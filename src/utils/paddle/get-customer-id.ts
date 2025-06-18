@@ -1,17 +1,19 @@
-import { createClient } from '@/utils/supabase/server';
+import { currentUser } from '@clerk/nextjs/server';
+import { prisma } from '@/lib/prisma';
 
 export async function getCustomerId() {
-  const supabase = await createClient();
-  const user = await supabase.auth.getUser();
-  if (user.data.user?.email) {
-    const customersData = await supabase
-      .from('customers')
-      .select('customer_id,email')
-      .eq('email', user.data.user?.email)
-      .single();
-    if (customersData?.data?.customer_id) {
-      return customersData?.data?.customer_id as string;
-    }
+  const user = await currentUser();
+  
+  if (!user?.emailAddresses?.[0]?.emailAddress) {
+    return '';
   }
-  return '';
+
+  const email = user.emailAddresses[0].emailAddress;
+  
+  const customer = await prisma.customer.findUnique({
+    where: { email },
+    select: { customerId: true },
+  });
+
+  return customer?.customerId ?? '';
 }
