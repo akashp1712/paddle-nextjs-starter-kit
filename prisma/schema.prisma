@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id          String   @id @default(cuid())
+  customerId  String   @unique @map("customer_id") // Paddle customer ID
+  email       String   @unique
+  clerkUserId String?  @unique @map("clerk_user_id") // Clerk user ID
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  subscriptions Subscription[]
+
+  @@map("customers")
+}
+
+model Subscription {
+  id                 String   @id @default(cuid())
+  subscriptionId     String   @unique @map("subscription_id") // Paddle subscription ID
+  subscriptionStatus String   @map("subscription_status")
+  priceId            String?  @map("price_id")
+  productId          String?  @map("product_id")
+  scheduledChange    String?  @map("scheduled_change")
+  customerId         String   @map("customer_id") // Paddle customer ID
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  customer Customer @relation(fields: [customerId], references: [customerId], onDelete: Cascade)
+
+  @@map("subscriptions")
+}

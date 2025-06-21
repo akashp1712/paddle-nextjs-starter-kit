@@ -6,7 +6,7 @@ import {
   SubscriptionCreatedEvent,
   SubscriptionUpdatedEvent,
 } from '@paddle/paddle-node-sdk';
-import { createClient } from '@/utils/supabase/server-internal';
+import { prisma } from '@/lib/prisma';
 
 export class ProcessWebhook {
   async processEvent(eventData: EventEntity) {
@@ -23,32 +23,37 @@ export class ProcessWebhook {
   }
 
   private async updateSubscriptionData(eventData: SubscriptionCreatedEvent | SubscriptionUpdatedEvent) {
-    const supabase = await createClient();
-    const { error } = await supabase
-      .from('subscriptions')
-      .upsert({
-        subscription_id: eventData.data.id,
-        subscription_status: eventData.data.status,
-        price_id: eventData.data.items[0].price?.id ?? '',
-        product_id: eventData.data.items[0].price?.productId ?? '',
-        scheduled_change: eventData.data.scheduledChange?.effectiveAt,
-        customer_id: eventData.data.customerId,
-      })
-      .select();
-
-    if (error) throw error;
+    await prisma.subscription.upsert({
+      where: { subscriptionId: eventData.data.id },
+      update: {
+        subscriptionStatus: eventData.data.status,
+        priceId: eventData.data.items[0].price?.id ?? null,
+        productId: eventData.data.items[0].price?.productId ?? null,
+        scheduledChange: eventData.data.scheduledChange?.effectiveAt ?? null,
+        updatedAt: new Date(),
+      },
+      create: {
+        subscriptionId: eventData.data.id,
+        subscriptionStatus: eventData.data.status,
+        priceId: eventData.data.items[0].price?.id ?? null,
+        productId: eventData.data.items[0].price?.productId ?? null,
+        scheduledChange: eventData.data.scheduledChange?.effectiveAt ?? null,
+        customerId: eventData.data.customerId,
+      },
+    });
   }
 
   private async updateCustomerData(eventData: CustomerCreatedEvent | CustomerUpdatedEvent) {
-    const supabase = await createClient();
-    const { error } = await supabase
-      .from('customers')
-      .upsert({
-        customer_id: eventData.data.id,
+    await prisma.customer.upsert({
+      where: { customerId: eventData.data.id },
+      update: {
         email: eventData.data.email,
-      })
-      .select();
-
-    if (error) throw error;
+        updatedAt: new Date(),
+      },
+      create: {
+        customerId: eventData.data.id,
+        email: eventData.data.email,
+      },
+    });
   }
 }

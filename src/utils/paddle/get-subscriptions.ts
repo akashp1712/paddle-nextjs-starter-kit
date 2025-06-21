@@ -9,7 +9,10 @@ export async function getSubscriptions(): Promise<SubscriptionResponse> {
   try {
     const customerId = await getCustomerId();
     if (customerId) {
-      const subscriptionCollection = getPaddleInstance().subscriptions.list({ customerId: [customerId], perPage: 20 });
+      const subscriptionCollection = getPaddleInstance().subscriptions.list({ 
+        customerId: [customerId], 
+        perPage: 20 
+      });
       const subscriptions = await subscriptionCollection.next();
       return {
         data: subscriptions,
@@ -17,9 +20,9 @@ export async function getSubscriptions(): Promise<SubscriptionResponse> {
         totalRecords: subscriptionCollection.estimatedTotal,
       };
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return { data: [], hasMore: false, totalRecords: 0 };
   } catch (e) {
+    console.error('Error fetching subscriptions:', e);
     return getErrorMessage();
   }
-  return getErrorMessage();
 }

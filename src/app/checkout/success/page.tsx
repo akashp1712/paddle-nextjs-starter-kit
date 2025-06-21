@@ -4,11 +4,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { PoweredByPaddle } from '@/components/home/footer/powered-by-paddle';
 import '../../../styles/checkout.css';
-import { createClient } from '@/utils/supabase/server';
+import { auth } from '@clerk/nextjs/server';
 
 export default async function SuccessPage() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
+  const { userId } = await auth();
 
   return (
     <main>
@@ -26,9 +25,9 @@ export default async function SuccessPage() {
             <h1 className={'text-4xl md:text-[80px] leading-9 md:leading-[80px] font-medium pb-6'}>
               Payment successful
             </h1>
-            <p className={'text-lg pb-16'}>Success! Your payment is complete, and you’re all set.</p>
+            <p className={'text-lg pb-16'}>Success! Your payment is complete, and you're all set.</p>
             <Button variant={'secondary'} asChild={true}>
-              {data.user ? <Link href={'/dashboard'}>Go to Dashboard</Link> : <Link href={'/'}>Go to Home</Link>}
+              {userId ? <Link href={'/dashboard'}>Go to Dashboard</Link> : <Link href={'/'}>Go to Home</Link>}
             </Button>
           </div>
         </div>
