@@ -11,29 +11,35 @@ import { TransactionResponse } from '@/lib/api.types';
 
 interface Props {
   subscriptionId: string;
+  initialTransactionResponse?: TransactionResponse;
 }
 
-export function PaymentsContent({ subscriptionId }: Props) {
+export function PaymentsContent({ subscriptionId, initialTransactionResponse }: Props) {
   const { after, goToNextPage, goToPrevPage, hasPrev } = usePagination();
 
-  const [transactionResponse, setTransactionResponse] = useState<TransactionResponse>({
-    data: [],
-    hasMore: false,
-    totalRecords: 0,
-    error: undefined,
-  });
-  const [loading, setLoading] = useState(true);
+  const [transactionResponse, setTransactionResponse] = useState<TransactionResponse>(
+    initialTransactionResponse || {
+      data: [],
+      hasMore: false,
+      totalRecords: 0,
+      error: undefined,
+    }
+  );
+  const [loading, setLoading] = useState(!initialTransactionResponse);
 
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      const response = await getTransactions(subscriptionId, after);
-      if (response) {
-        setTransactionResponse(response);
-      }
-      setLoading(false);
-    })();
-  }, [subscriptionId, after]);
+    // Only fetch if we don't have initial data or if pagination has changed
+    if (!initialTransactionResponse || after) {
+      (async () => {
+        setLoading(true);
+        const response = await getTransactions(subscriptionId, after);
+        if (response) {
+          setTransactionResponse(response);
+        }
+        setLoading(false);
+      })();
+    }
+  }, [subscriptionId, after, initialTransactionResponse]);
 
   if (!transactionResponse || transactionResponse.error) {
     return <ErrorContent />;

@@ -14,30 +14,43 @@ import { SubscriptionDetailResponse, TransactionResponse } from '@/lib/api.types
 
 interface Props {
   subscriptionId: string;
+  initialSubscriptionResponse?: SubscriptionDetailResponse;
+  initialTransactionResponse?: TransactionResponse;
 }
 
-export function SubscriptionDetail({ subscriptionId }: Props) {
-  const [loading, setLoading] = useState(true);
-  const [subscription, setSubscription] = useState<SubscriptionDetailResponse>();
-  const [transactions, setTransactions] = useState<TransactionResponse>();
+export function SubscriptionDetail({ 
+  subscriptionId, 
+  initialSubscriptionResponse, 
+  initialTransactionResponse 
+}: Props) {
+  const [loading, setLoading] = useState(!initialSubscriptionResponse || !initialTransactionResponse);
+  const [subscription, setSubscription] = useState<SubscriptionDetailResponse | undefined>(
+    initialSubscriptionResponse
+  );
+  const [transactions, setTransactions] = useState<TransactionResponse | undefined>(
+    initialTransactionResponse
+  );
 
   useEffect(() => {
-    (async () => {
-      const [subscriptionResponse, transactionsResponse] = await Promise.all([
-        getSubscription(subscriptionId),
-        getTransactions(subscriptionId, ''),
-      ]);
+    // Only fetch if we don't have initial data
+    if (!initialSubscriptionResponse || !initialTransactionResponse) {
+      (async () => {
+        const [subscriptionResponse, transactionsResponse] = await Promise.all([
+          getSubscription(subscriptionId),
+          getTransactions(subscriptionId, ''),
+        ]);
 
-      if (subscriptionResponse) {
-        setSubscription(subscriptionResponse);
-      }
+        if (subscriptionResponse) {
+          setSubscription(subscriptionResponse);
+        }
 
-      if (transactionsResponse) {
-        setTransactions(transactionsResponse);
-      }
-      setLoading(false);
-    })();
-  }, [subscriptionId]);
+        if (transactionsResponse) {
+          setTransactions(transactionsResponse);
+        }
+        setLoading(false);
+      })();
+    }
+  }, [subscriptionId, initialSubscriptionResponse, initialTransactionResponse]);
 
   if (loading) {
     return <LoadingScreen />;
