@@ -6,7 +6,6 @@
 
 .grain-background {
   background: url('/assets/background/grain-bg.svg') repeat;
-  opacity: 0.1;
 }
 
 .dashboard-shared-top-grainy-blur {
@@ -19,8 +18,8 @@
   background: linear-gradient(
     0deg,
     rgba(255, 251, 229, 0) 0%,
-    rgba(21, 227, 227, 0.03) 35.5%,
-    rgba(230, 126, 0, 0.24) 80.5%
+    rgba(21, 227, 227, 0.06) 35.5%,
+    rgba(255, 248, 0, 0.48) 80.5%
   );
   filter: blur(26px);
 }
@@ -31,7 +30,7 @@
   width: 101px;
   height: 167px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(168, 240, 248, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(168, 240, 248, 0.6) 100%);
   filter: blur(26px);
 }
 
@@ -47,8 +46,8 @@
   background: linear-gradient(
     180deg,
     rgba(255, 251, 229, 0) 0%,
-    rgba(21, 227, 227, 0.03) 35.5%,
-    rgba(230, 126, 0, 0.24) 80.5%
+    rgba(21, 227, 227, 0.06) 35.5%,
+    rgba(255, 248, 0, 0.48) 80.5%
   );
   filter: blur(100px);
 }
@@ -59,16 +58,16 @@
   width: 394px;
   height: 648px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(168, 240, 248, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(168, 240, 248, 0.6) 100%);
   filter: blur(100px);
 }
 
 .dashboard-sidebar-items {
   svg.lucide {
-    color: #9ca3af;
+    color: #4b4f4f;
   }
   &.dashboard-sidebar-items-active {
-    background: #f9fafb;
+    background: #161d1d;
     svg.lucide {
       color: hsl(var(--primary));
     }
@@ -76,7 +75,7 @@
 }
 
 .dashboard-sidebar-items:hover {
-  background: #f9fafb;
+  background: #161d1d;
   svg.lucide {
     color: hsl(var(--primary));
   }
@@ -92,9 +91,9 @@
   top: 0;
   background: linear-gradient(
     90deg,
-    rgba(230, 126, 0, 0) 15%,
-    rgba(230, 126, 0, 0.6) 50%,
-    rgba(230, 126, 0, 0) 85%
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 248, 0, 0.6) 50%,
+    rgba(255, 255, 255, 0) 85%
   );
 }
 
@@ -106,8 +105,8 @@
   left: 8px;
   background: linear-gradient(
     90deg,
-    rgba(230, 126, 0, 0) 15%,
-    rgba(230, 126, 0, 0.6) 50%,
-    rgba(230, 126, 0, 0) 85%
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 248, 0, 0.6) 50%,
+    rgba(255, 255, 255, 0) 85%
   );
 }

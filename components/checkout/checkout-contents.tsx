@@ -48,7 +48,7 @@ export function CheckoutContents() {
           settings: {
             variant: 'one-page',
             displayMode: 'inline',
-            theme: 'light',
+            theme: 'dark',
             allowLogout: !userEmail,
             frameTarget: 'paddle-checkout-frame',
             frameInitialHeight: 450,
@@ -77,7 +77,7 @@ export function CheckoutContents() {
   return (
     <div
       className={
-        'rounded-lg md:bg-background/80 md:backdrop-blur-[24px] md:p-10 md:pl-16 md:pt-16 md:min-h-[400px] flex flex-col justify-between relative border border-border/20'
+        'rounded-lg md:bg-background/80 md:backdrop-blur-[24px] md:p-10 md:pl-16 md:pt-16 md:min-h-[400px] flex flex-col justify-between relative'
       }
     >
       <CheckoutFormGradients />

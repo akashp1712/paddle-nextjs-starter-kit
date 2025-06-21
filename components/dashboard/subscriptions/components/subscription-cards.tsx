@@ -27,7 +27,7 @@ export function SubscriptionCards({ subscriptions, className }: Props) {
               ? `/${subscription.billingCycle.interval}`
               : `every ${subscription.billingCycle.frequency} ${subscription.billingCycle.interval}s`;
           return (
-            <Card key={subscription.id} className={'bg-background/80 backdrop-blur-[24px] border-border p-6'}>
+            <Card key={subscription.id} className={'bg-background/50 backdrop-blur-[24px] border-border p-6'}>
               <CardHeader className="p-0 space-y-0">
                 <CardTitle className="flex flex-col justify-between items-start mb-6">
                   <div
@@ -53,7 +53,7 @@ export function SubscriptionCards({ subscriptions, className }: Props) {
               </CardHeader>
               <CardContent className={'p-0 flex justify-between gap-3 flex-wrap xl:flex-nowrap'}>
                 <div className={'flex flex-col gap-3'}>
-                  <div className="text-base leading-6 text-muted-foreground">{subscriptionItem.product.description}</div>
+                  <div className="text-base leading-6 text-secondary">{subscriptionItem.product.description}</div>
                   <div className="text-base leading-[16px] text-primary">
                     {formattedPrice}
                     {frequency}

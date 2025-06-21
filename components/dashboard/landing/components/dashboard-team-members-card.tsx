@@ -34,12 +34,12 @@ const teamMembers = [
 
 export function DashboardTeamMembersCard() {
   return (
-    <Card className={'bg-background/80 backdrop-blur-[24px] border-border p-6'}>
+    <Card className={'bg-background/50 backdrop-blur-[24px] border-border p-6'}>
       <CardHeader className="p-0 space-y-0">
         <CardTitle className="flex justify-between gap-2 items-center pb-6 border-border border-b">
           <div className={'flex flex-col gap-2'}>
             <span className={'text-xl font-medium'}>Team members</span>
-            <span className={'text-base leading-4 text-muted-foreground'}>Invite your team members to collaborate</span>
+            <span className={'text-base leading-4 text-secondary'}>Invite your team members to collaborate</span>
           </div>
           <Button asChild={true} size={'sm'} variant={'outline'} className={'text-sm rounded-sm border-border'}>
             <Link href={'/dashboard/subscriptions'}>
@@ -52,12 +52,12 @@ export function DashboardTeamMembersCard() {
         {teamMembers.map((teamMember) => (
           <div key={teamMember.email} className={'flex justify-between items-center gap-2'}>
             <div className={'flex gap-4'}>
-              <div className={'flex items-center justify-center px-3 py-4 bg-gray-100 rounded-md'}>
-                <span className={'text-foreground text-base w-5'}>{teamMember.initials}</span>
+              <div className={'flex items-center justify-center px-3 py-4'}>
+                <span className={'text-white text-base w-5'}>{teamMember.initials}</span>
               </div>
               <div className={'flex flex-col gap-2'}>
                 <span className={'text-base leading-4 font-medium'}>{teamMember.name}</span>
-                <span className={'text-base leading-4 text-muted-foreground'}>{teamMember.email}</span>
+                <span className={'text-base leading-4 text-secondary'}>{teamMember.email}</span>
               </div>
             </div>
           </div>

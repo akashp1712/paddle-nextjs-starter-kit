@@ -8,7 +8,7 @@ import { ErrorContent } from '@/components/dashboard/layout/error-content';
 export async function DashboardSubscriptionCardGroup() {
   const subscriptions = await getSubscriptions();
   return (
-    <Card className={'bg-background/80 backdrop-blur-[24px] border-border p-6'}>
+    <Card className={'bg-background/50 backdrop-blur-[24px] border-border p-6'}>
       <CardHeader className="p-0 space-y-0">
         <CardTitle className="flex justify-between items-center pb-6 border-border border-b">
           <span className={'text-xl font-medium'}>Active subscriptions</span>

@@ -14,7 +14,7 @@ interface Props {
 
 export function SubscriptionPastPaymentsCard({ subscriptionId, transactions }: Props) {
   return (
-    <Card className={'bg-background/80 backdrop-blur-[24px] border-border p-6 @container'}>
+    <Card className={'bg-background/50 backdrop-blur-[24px] border-border p-6 @container'}>
       <CardTitle className="flex justify-between items-center pb-6 border-border border-b flex-wrap">
         <span className={'text-xl font-medium'}>Payments</span>
         <Button asChild={true} size={'sm'} variant={'outline'} className={'text-sm rounded-sm border-border'}>
@@ -26,12 +26,12 @@ export function SubscriptionPastPaymentsCard({ subscriptionId, transactions }: P
           const formattedPrice = parseMoney(transaction.details?.totals?.total, transaction.currencyCode);
           return (
             <div key={transaction.id} className={'flex flex-col gap-4 border-border border-b py-6'}>
-              <div className={'text-muted-foreground text-base leading-4'}>
+              <div className={'text-secondary text-base leading-4'}>
                 {dayjs(transaction.billedAt ?? transaction.createdAt).format('MMM DD, YYYY')}
               </div>
               <div className={'flex-wrap flex items-center gap-5'}>
                 <span className={'font-semibold text-base leading-4'}>{getPaymentReason(transaction.origin)}</span>
-                <span className={'text-base leading-6 text-muted-foreground'}>
+                <span className={'text-base leading-6 text-secondary'}>
                   {transaction.details?.lineItems[0].product?.name}
                 </span>
               </div>
