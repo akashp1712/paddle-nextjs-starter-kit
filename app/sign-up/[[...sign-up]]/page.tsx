@@ -12,7 +12,7 @@ export default function SignUpPage() {
             appearance={{
               elements: {
                 rootBox: 'mx-auto',
-                card: 'bg-background/80 backdrop-blur-[6px] border border-border',
+                card: 'bg-background/90 backdrop-blur-[6px] border border-border',
               },
             }}
           />

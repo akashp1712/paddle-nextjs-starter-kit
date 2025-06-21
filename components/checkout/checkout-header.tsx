@@ -7,7 +7,7 @@ export function CheckoutHeader() {
   return (
     <div className={'flex gap-4'}>
       <Link href={'/'}>
-        <Button variant={'secondary'} className={'h-[32px] bg-[#182222] border-border w-[32px] p-0 rounded-[4px]'}>
+        <Button variant={'secondary'} className={'h-[32px] bg-gray-100 border-border w-[32px] p-0 rounded-[4px]'}>
           <ChevronLeft />
         </Button>
       </Link>

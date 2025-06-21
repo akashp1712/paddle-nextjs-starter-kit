@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={'min-h-full dark'}>
+      <html lang="en" className={'min-h-full'}>
         <body className={inter.className}>
           {children}
           <Toaster />

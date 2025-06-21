@@ -7,25 +7,28 @@
 
 .grid-bg {
   background: url('/assets/background/grid-bg.svg') no-repeat;
+  opacity: 0.3;
 }
 
 .grain-background {
   background: url('/assets/background/grain-bg.svg') repeat;
+  opacity: 0.1;
 }
 
 .grain-blur {
   top: -220px;
   background: url('/assets/background/grain-blur.svg') no-repeat 50%;
+  opacity: 0.2;
 }
 
 .large-blur {
   left: -30px;
   top: -864px;
   border-radius: 750px;
-  opacity: 0.2;
+  opacity: 0.1;
   background: radial-gradient(
     70.71% 70.71% at 50% 50%,
-    rgba(117, 173, 255, 0.2) 0%,
+    rgba(117, 173, 255, 0.1) 0%,
     rgba(117, 173, 255, 0) 70%,
     rgba(117, 173, 255, 0) 100%
   );
@@ -33,11 +36,12 @@
 
 .small-blur {
   background: url('/assets/background/small-blur.svg') no-repeat 50%;
+  opacity: 0.2;
 }
 
 .featured-card-badge {
   position: relative;
-  background: linear-gradient(90deg, #fff800 0%, #fffecc 100%);
+  background: linear-gradient(90deg, #e67e00 0%, #ff9500 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -47,9 +51,9 @@
   content: '';
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0) 15%,
-    rgba(255, 248, 0, 0.6) 50%,
-    rgba(255, 255, 255, 0) 85%
+    rgba(230, 126, 0, 0) 15%,
+    rgba(230, 126, 0, 0.6) 50%,
+    rgba(230, 126, 0, 0) 85%
   );
   position: absolute;
   left: 8px;
@@ -66,7 +70,7 @@
   inset: 0;
   border-radius: 16px 16px 0 0;
   padding: 1px 1px 0;
-  background: linear-gradient(180deg, #414b4e 49.5%, rgba(65, 75, 78, 0) 100%);
+  background: linear-gradient(180deg, #e5e7eb 49.5%, rgba(229, 231, 235, 0) 100%);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -76,7 +80,7 @@
 
 .footer-border {
   position: relative;
-  background: linear-gradient(90deg, rgba(65, 75, 78, 0) 0%, #414b4e 49.5%, rgba(65, 75, 78, 0) 100%);
+  background: linear-gradient(90deg, rgba(229, 231, 235, 0) 0%, #e5e7eb 49.5%, rgba(229, 231, 235, 0) 100%);
 }
 .footer-border::after {
   content: '';
@@ -87,9 +91,9 @@
   height: 1px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0) 15%,
-    rgba(255, 248, 0, 0.6) 50%,
-    rgba(255, 255, 255, 0) 85%
+    rgba(230, 126, 0, 0) 15%,
+    rgba(230, 126, 0, 0.6) 50%,
+    rgba(230, 126, 0, 0) 85%
   );
 }
 
@@ -104,8 +108,8 @@
   height: 17px;
   width: 296px;
   border-radius: 296px;
-  opacity: 0.2;
-  background: #fddd35;
+  opacity: 0.1;
+  background: #e67e00;
   filter: blur(32px);
 }
 
@@ -117,8 +121,8 @@
   left: 94px;
   top: -2px;
   border-radius: 196px;
-  opacity: 0.5;
-  background: #4d94ff;
+  opacity: 0.2;
+  background: #3b82f6;
   filter: blur(12px);
 }
 
@@ -129,8 +133,8 @@
   left: 50%;
   margin-left: -44px;
   top: -2px;
-  background: #fff800;
-  opacity: 0.5;
+  background: #e67e00;
+  opacity: 0.3;
   filter: blur(12px);
 }
 
@@ -143,9 +147,9 @@
   height: 1px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0) 15%,
-    rgba(255, 248, 0, 0.6) 50%,
-    rgba(255, 255, 255, 0) 85%
+    rgba(230, 126, 0, 0) 15%,
+    rgba(230, 126, 0, 0.6) 50%,
+    rgba(230, 126, 0, 0) 85%
   );
 }
 .featured-vertical-hard-blur-bg {
@@ -156,8 +160,8 @@
   width: 128px;
   height: 280px;
   border-radius: 280px;
-  opacity: 0.1;
-  background: #fff800;
+  opacity: 0.05;
+  background: #e67e00;
   filter: blur(48px);
 }
 
@@ -169,7 +173,7 @@
   width: 384px;
   height: 37px;
   border-radius: 384px;
-  opacity: 0.3;
-  background: #fff800;
+  opacity: 0.15;
+  background: #e67e00;
   filter: blur(32px);
 }
